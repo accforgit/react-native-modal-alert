@@ -13,7 +13,7 @@ RN官方提供的兼容Android与IOS的Alert组件，样式定制化程度太低
 
 
 `npm install --save https://github.com/accforgit/react-native-modal-alert.git`
-[showpicture](https://github.com/accforgit/react-native-modal-alert/blob/master/showPic.png)
+![showpicture](https://github.com/accforgit/react-native-modal-alert/blob/master/showPic.png)
 
 - Will not animate unless you specify what direction.
 
