@@ -13,6 +13,8 @@ RN官方提供的兼容Android与IOS的Alert组件，样式定制化程度太低
 
 
 `npm install --save https://github.com/accforgit/react-native-modal-alert.git`
+<br>
+
 ![showpicture](https://github.com/accforgit/react-native-modal-alert/blob/master/showPic.png)
 
 - Will not animate unless you specify what direction.
@@ -45,7 +47,7 @@ export default class Example extends Component {
         justifyContent:'center',
         backgroundColor:'deeppink'
       }}>
-        <Text style={{color:'white',fontSize:30, textAlign:'center'}}>I'm a React-Native Component</Text>
+        <Text style={{color:'white',fontSize:30, textAlign:'center'}}>I am a React-Native Component</Text>
         <TouchableOpacity
           onPress={
             () => this.setState({renderAlert:true})
