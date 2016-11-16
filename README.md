@@ -3,16 +3,17 @@
 
 ---
 RN官方提供的兼容Android与IOS的Alert组件，样式定制化程度太低，难以满足大部分的需求
-这里提供的一个仿照AlertIOS的组件，基于(rn-animate-alert)[https://github.com/parkerdan/rn-animate-alert]进行了一番改造，
+这里提供的一个仿照AlertIOS的组件，基于[rn-animate-alert](https://github.com/parkerdan/rn-animate-alert)进行了一番改造，
 最终的样式近乎于AlertIOS。
 
-感谢(parkerdan)[https://github.com/parkerdan]提供的(rn-animate-alert)[https://github.com/parkerdan/rn-animate-alert]组件
+感谢[parkerdan](https://github.com/parkerdan]提供的(rn-animate-alert)[https://github.com/parkerdan/rn-animate-alert)组件
 
 ---
 
 
 
 `npm install --save https://github.com/accforgit/react-native-modal-alert.git`
+[showpicture](https://github.com/accforgit/react-native-modal-alert/blob/master/showPic.png)
 
 - Will not animate unless you specify what direction.
 
