@@ -6,7 +6,7 @@ RN官方提供的兼容Android与IOS的Alert组件，样式定制化程度太低
 这里提供的一个仿照AlertIOS的组件，基于[rn-animate-alert](https://github.com/parkerdan/rn-animate-alert)进行了一番改造，
 最终的样式近乎于AlertIOS。
 
-感谢[parkerdan](https://github.com/parkerdan]提供的(rn-animate-alert)[https://github.com/parkerdan/rn-animate-alert)组件
+Thanks [parkerdan](https://github.com/parkerdan) for the perfect compinent [rn-animate-alert](https://github.com/parkerdan/rn-animate-alert)
 
 ---
 
