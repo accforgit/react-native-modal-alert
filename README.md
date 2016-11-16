@@ -1,5 +1,5 @@
 # react-native-modal-alert
-> transform from (rn-animate-alert)[https://github.com/parkerdan/rn-animate-alert]
+> transform from [rn-animate-alert](https://github.com/parkerdan/rn-animate-alert)
 
 ---
 RN官方提供的兼容Android与IOS的Alert组件，样式定制化程度太低，难以满足大部分的需求
