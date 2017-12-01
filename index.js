@@ -7,7 +7,8 @@ Dimensions,
 Text,
 TouchableOpacity,
 Animated,
-Easing
+Easing,
+TextInput
 } from 'react-native';
 
 const { height,width } = Dimensions.get('window');
@@ -37,17 +38,29 @@ containerStyle: React.PropTypes.oneOfType([React.PropTypes.number,React.PropType
 springFromBottom: React.PropTypes.bool,
 springFromTop: React.PropTypes.bool,
 
+type: React.PropTypes.string,
+
+textInputStyle: React.PropTypes.oneOfType([
+  React.PropTypes.number,
+  React.PropTypes.object,
+  React.PropTypes.array
+]),
+
 zIndex: React.PropTypes.number, // try and avoid this.  only needed if you used zIndex elsewhere
 
 };
 
 export default class Alert extends Component {
+  static defaultProps = {
+    type: "alert" //alert | prompt
+  };
 
  constructor(props){
    super(props);
    this.dismiss = this.dismiss.bind(this);
 
    this.state = {
+    promptValue: ""
    };
  };
 
@@ -76,6 +89,7 @@ export default class Alert extends Component {
 
  dismiss(cb){
    let toValue = 0;
+   const { promptValue } = this.state;
    if (this.props.springFromBottom) {
      toValue = 1;
    }
@@ -86,7 +100,7 @@ export default class Alert extends Component {
      toValue: toValue,
      duration: 200,
      easing: Easing.linear
-   }).start(cb)
+    }).start(() => cb(promptValue));
  };
 
  renderText(){
@@ -142,8 +156,23 @@ export default class Alert extends Component {
            bottom:0,
            width:width*0.8
          }}>
-          <View style={{borderBottomWidth:1,borderColor:"#E8E8EA",height:width*0.16,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+          <View style={{
+            borderBottomWidth: 1,
+            borderColor: "#E8E8EA",
+            minHeight: width * 0.16,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            paddingHorizontal: 10
+          }}>
             <Text>{this.renderText()}</Text>
+            {this.props.type === "prompt" &&
+              <TextInput
+                style={[{alignSelf: 'stretch'}, this.props.textInputStyle]}
+                value={this.state.promptValue}
+                onChangeText={promptValue => this.setState({promptValue})}
+              />
+            }
           </View>
           <View style={{
             flexDirection: 'row'
