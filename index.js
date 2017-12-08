@@ -1,6 +1,7 @@
 'use strict'
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import {
 View,
 Dimensions,
@@ -14,39 +15,39 @@ TextInput
 const { height,width } = Dimensions.get('window');
 
 const propTypes = {
-onConfirm: React.PropTypes.func.isRequired,
-onCancel: React.PropTypes.func.isRequired,
+onConfirm: PropTypes.func.isRequired,
+onCancel: PropTypes.func.isRequired,
 
-title: React.PropTypes.string.isRequired,
-titleTextStyle: React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+title: PropTypes.string.isRequired,
+titleTextStyle: PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-detailText: React.PropTypes.string,
-detailTextStyle: React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+detailText: PropTypes.string,
+detailTextStyle: PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-confirmText: React.PropTypes.string,
-confirmTextStyle:React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
-confirmButtonStyle:React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+confirmText: PropTypes.string,
+confirmTextStyle:PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
+confirmButtonStyle:PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-cancelText: React.PropTypes.string,
-cancelTextStyle: React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
-cancelButtonStyle:React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+cancelText: PropTypes.string,
+cancelTextStyle: PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
+cancelButtonStyle:PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-backgroundColor: React.PropTypes.string,
+backgroundColor: PropTypes.string,
 
-containerStyle: React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+containerStyle: PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-springFromBottom: React.PropTypes.bool,
-springFromTop: React.PropTypes.bool,
+springFromBottom: PropTypes.bool,
+springFromTop: PropTypes.bool,
 
-type: React.PropTypes.string,
+type: PropTypes.string,
 
-textInputStyle: React.PropTypes.oneOfType([
-  React.PropTypes.number,
-  React.PropTypes.object,
-  React.PropTypes.array
+textInputStyle: PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.object,
+  PropTypes.array
 ]),
 
-zIndex: React.PropTypes.number, // try and avoid this.  only needed if you used zIndex elsewhere
+zIndex: PropTypes.number, // try and avoid this.  only needed if you used zIndex elsewhere
 
 };
 
