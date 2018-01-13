@@ -1,53 +1,67 @@
 'use strict'
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import {
 View,
 Dimensions,
 Text,
 TouchableOpacity,
 Animated,
-Easing
+Easing,
+TextInput
 } from 'react-native';
 
 const { height,width } = Dimensions.get('window');
 
 const propTypes = {
-onConfirm: React.PropTypes.func.isRequired,
-onCancel: React.PropTypes.func.isRequired,
+onConfirm: PropTypes.func.isRequired,
+onCancel: PropTypes.func.isRequired,
 
-title: React.PropTypes.string.isRequired,
-titleTextStyle: React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+title: PropTypes.string.isRequired,
+titleTextStyle: PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-detailText: React.PropTypes.string,
-detailTextStyle: React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+detailText: PropTypes.string,
+detailTextStyle: PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-confirmText: React.PropTypes.string,
-confirmTextStyle:React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
-confirmButtonStyle:React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+confirmText: PropTypes.string,
+confirmTextStyle:PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
+confirmButtonStyle:PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-cancelText: React.PropTypes.string,
-cancelTextStyle: React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
-cancelButtonStyle:React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+cancelText: PropTypes.string,
+cancelTextStyle: PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
+cancelButtonStyle:PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-backgroundColor: React.PropTypes.string,
+backgroundColor: PropTypes.string,
 
-containerStyle: React.PropTypes.oneOfType([React.PropTypes.number,React.PropTypes.object,React.PropTypes.array]),
+containerStyle: PropTypes.oneOfType([PropTypes.number,PropTypes.object,PropTypes.array]),
 
-springFromBottom: React.PropTypes.bool,
-springFromTop: React.PropTypes.bool,
+springFromBottom: PropTypes.bool,
+springFromTop: PropTypes.bool,
 
-zIndex: React.PropTypes.number, // try and avoid this.  only needed if you used zIndex elsewhere
+type: PropTypes.string,
+
+textInputStyle: PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.object,
+  PropTypes.array
+]),
+
+zIndex: PropTypes.number, // try and avoid this.  only needed if you used zIndex elsewhere
 
 };
 
 export default class Alert extends Component {
+  static defaultProps = {
+    type: "alert" //alert | prompt
+  };
 
  constructor(props){
    super(props);
    this.dismiss = this.dismiss.bind(this);
 
    this.state = {
+    promptValue: ""
    };
  };
 
@@ -76,6 +90,7 @@ export default class Alert extends Component {
 
  dismiss(cb){
    let toValue = 0;
+   const { promptValue } = this.state;
    if (this.props.springFromBottom) {
      toValue = 1;
    }
@@ -86,7 +101,7 @@ export default class Alert extends Component {
      toValue: toValue,
      duration: 200,
      easing: Easing.linear
-   }).start(cb)
+    }).start(() => cb(promptValue));
  };
 
  renderText(){
@@ -142,8 +157,25 @@ export default class Alert extends Component {
            bottom:0,
            width:width*0.8
          }}>
-          <View style={{borderBottomWidth:1,borderColor:"#E8E8EA",height:width*0.16,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+          <View style={{
+            borderBottomWidth: 1,
+            borderColor: "#E8E8EA",
+            minHeight: width * 0.16,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            paddingHorizontal: 10
+          }}>
             <Text>{this.renderText()}</Text>
+            {this.props.type === "prompt" &&
+              <TextInput
+                style={[{alignSelf: 'stretch'}, this.props.textInputStyle]}
+                value={this.state.promptValue}
+                onChangeText={promptValue => this.setState({promptValue})}
+                onSubmitEditing={() => this.dismiss(this.props.onConfirm)}
+                autoFocus
+              />
+            }
           </View>
           <View style={{
             flexDirection: 'row'
