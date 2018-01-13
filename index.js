@@ -172,6 +172,8 @@ export default class Alert extends Component {
                 style={[{alignSelf: 'stretch'}, this.props.textInputStyle]}
                 value={this.state.promptValue}
                 onChangeText={promptValue => this.setState({promptValue})}
+                onSubmitEditing={() => this.dismiss(this.props.onConfirm)}
+                autoFocus
               />
             }
           </View>
